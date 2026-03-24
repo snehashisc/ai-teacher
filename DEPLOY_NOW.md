@@ -43,7 +43,7 @@ In Vercel Dashboard → Your Project → Settings → Environment Variables:
 Add these two variables:
 
 1. **GEMINI_API_KEY**
-   - Value: `AIzaSyClYKtHFM299pUJtVSjtqU94ARB9e11-DY`
+   - Value: ''
    - Environment: Production, Preview, Development
 
 2. **DATABASE_URL**
