@@ -66,24 +66,6 @@ Replace `YOUR_USERNAME` with your actual GitHub username.
 
 Click "Deploy" (it will fail - that's expected!)
 
-### Step 3: Add Environment Variables
-
-1. Go to your project in Vercel Dashboard
-2. Click "Settings" → "Environment Variables"
-3. Add these variables:
-
-**Variable 1:**
-- Name: `GEMINI_API_KEY`
-- Value: `AIzaSyClYKtHFM299pUJtVSjtqU94ARB9e11-DY`
-- Environment: Check all three (Production, Preview, Development)
-- Click "Save"
-
-**Variable 2:**
-- Name: `DATABASE_URL`
-- Value: Your PostgreSQL connection string from Part 2
-- Environment: Check all three (Production, Preview, Development)
-- Click "Save"
-
 ### Step 4: Initialize Database Schema
 
 On your local machine, run:
