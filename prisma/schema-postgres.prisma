@@ -35,7 +35,7 @@ model Session {
 model Interaction {
   id          String   @id @default(cuid())
   sessionId   String
-  type        String   // "explanation", "question", "answer", "feedback"
+  type        String
   content     String
   isCorrect   Boolean?
   timestamp   DateTime @default(now())
@@ -49,7 +49,7 @@ model Progress {
   subject     String
   chapter     String
   topic       String
-  accuracy    Float    // percentage
+  accuracy    Float
   attemptsCount Int    @default(0)
   lastAttempt DateTime @default(now())
   
@@ -75,8 +75,8 @@ model WeakTopic {
 model Homework {
   id          String   @id @default(cuid())
   sessionId   String   @unique
-  questions   String   // JSON string
-  answers     String?  // JSON string
+  questions   String
+  answers     String?
   score       Float?
   completedAt DateTime?
   createdAt   DateTime @default(now())
