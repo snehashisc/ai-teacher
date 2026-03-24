@@ -1,0 +1,85 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Student {
+  id        String   @id @default(cuid())
+  name      String
+  class     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  sessions  Session[]
+  progress  Progress[]
+  weakTopics WeakTopic[]
+}
+
+model Session {
+  id         String   @id @default(cuid())
+  studentId  String
+  subject    String
+  chapter    String
+  startedAt  DateTime @default(now())
+  endedAt    DateTime?
+  
+  student    Student  @relation(fields: [studentId], references: [id])
+  interactions Interaction[]
+  homework   Homework?
+}
+
+model Interaction {
+  id          String   @id @default(cuid())
+  sessionId   String
+  type        String   // "explanation", "question", "answer", "feedback"
+  content     String
+  isCorrect   Boolean?
+  timestamp   DateTime @default(now())
+  
+  session     Session  @relation(fields: [sessionId], references: [id])
+}
+
+model Progress {
+  id          String   @id @default(cuid())
+  studentId   String
+  subject     String
+  chapter     String
+  topic       String
+  accuracy    Float    // percentage
+  attemptsCount Int    @default(0)
+  lastAttempt DateTime @default(now())
+  
+  student     Student  @relation(fields: [studentId], references: [id])
+  
+  @@unique([studentId, subject, chapter, topic])
+}
+
+model WeakTopic {
+  id          String   @id @default(cuid())
+  studentId   String
+  subject     String
+  chapter     String
+  topic       String
+  errorCount  Int      @default(0)
+  lastError   DateTime @default(now())
+  
+  student     Student  @relation(fields: [studentId], references: [id])
+  
+  @@unique([studentId, subject, chapter, topic])
+}
+
+model Homework {
+  id          String   @id @default(cuid())
+  sessionId   String   @unique
+  questions   String   // JSON string
+  answers     String?  // JSON string
+  score       Float?
+  completedAt DateTime?
+  createdAt   DateTime @default(now())
+  
+  session     Session  @relation(fields: [sessionId], references: [id])
+}
