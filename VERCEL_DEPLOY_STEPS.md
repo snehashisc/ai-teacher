@@ -55,7 +55,6 @@ In the Vercel dashboard or via CLI:
 ```bash
 # Add Gemini API Key
 vercel env add GEMINI_API_KEY production
-# Paste: AIzaSyClYKtHFM299pUJtVSjtqU94ARB9e11-DY
 
 # Add Database URL
 vercel env add DATABASE_URL production
