@@ -41,25 +41,27 @@ export default function SubjectSelection({
 
   return (
     <div className="min-h-screen p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
+      <div className="max-w-5xl mx-auto">
+        <div className="mb-10">
           {onBack && (
             <button
               onClick={onBack}
-              className="flex items-center text-gray-600 hover:text-gray-900 mb-4 transition"
+              className="glass-effect px-4 py-2 rounded-xl flex items-center text-gray-700 hover:text-primary-600 mb-6 transition-all hover:shadow-lg"
             >
               <ArrowLeft className="w-5 h-5 mr-2" />
-              Back
+              <span className="font-medium">Back</span>
             </button>
           )}
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Hi {studentName}! 👋
-          </h1>
-          <p className="text-gray-600">
-            {!selectedSubject && "Let's start by choosing what you'd like to learn today"}
-            {selectedSubject && !selectedChapter && "Great! Now pick a chapter"}
-            {selectedSubject && selectedChapter && "Perfect! Choose a topic to begin"}
-          </p>
+          <div className="glass-effect rounded-3xl p-8 shadow-premium border border-white/30">
+            <h1 className="text-4xl md:text-5xl font-bold mb-3">
+              <span className="gradient-text">Hi {studentName}! 👋</span>
+            </h1>
+            <p className="text-xl text-gray-700 font-medium">
+              {!selectedSubject && "Let's start by choosing what you'd like to learn today"}
+              {selectedSubject && !selectedChapter && "Great! Now pick a chapter"}
+              {selectedSubject && selectedChapter && "Perfect! Choose a topic to begin"}
+            </p>
+          </div>
         </div>
 
         {!selectedSubject && (
@@ -75,27 +77,28 @@ export default function SubjectSelection({
               </div>
             ) : (
               <div className="grid gap-4">
-                {curriculum.subjects.map((subj) => (
+                {curriculum.subjects.map((subj, idx) => (
                   <button
                     key={subj.id}
                     onClick={() => setSelectedSubject(subj.id)}
-                    className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-left group"
+                    className="premium-card p-8 text-left group hover:scale-[1.02] transform transition-all animate-slide-up"
+                    style={{ animationDelay: `${idx * 0.1}s` }}
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center">
-                        <div className="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center mr-4">
-                          <BookOpen className="w-6 h-6 text-primary-600" />
+                        <div className="w-16 h-16 bg-gradient-to-br from-primary-500 to-accent-500 rounded-2xl flex items-center justify-center mr-5 shadow-lg group-hover:shadow-glow transition-all">
+                          <BookOpen className="w-8 h-8 text-white" />
                         </div>
                         <div>
-                          <h3 className="text-xl font-semibold text-gray-900">
+                          <h3 className="text-2xl font-bold text-gray-900 mb-1">
                             {subj.name}
                           </h3>
-                          <p className="text-sm text-gray-500">
-                            {subj.chapters.length} chapters
+                          <p className="text-sm text-gray-500 font-medium">
+                            {subj.chapters.length} chapters • Interactive learning
                           </p>
                         </div>
                       </div>
-                      <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-primary-500 transition" />
+                      <ChevronRight className="w-7 h-7 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all" />
                     </div>
                   </button>
                 ))}
@@ -105,35 +108,39 @@ export default function SubjectSelection({
         )}
 
         {selectedSubject && !selectedChapter && subject && (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <button
               onClick={() => setSelectedSubject(null)}
-              className="text-primary-600 hover:text-primary-700 font-medium"
+              className="glass-effect px-5 py-2 rounded-xl text-primary-600 hover:text-primary-700 font-semibold transition-all hover:shadow-lg"
             >
               ← Change Subject
             </button>
-            <div className="grid gap-4">
-              {subject.chapters.map((chap) => (
+            <div className="grid gap-5">
+              {subject.chapters.map((chap, idx) => (
                 <button
                   key={chap.id}
                   onClick={() => setSelectedChapter(chap.id)}
-                  className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all text-left group"
+                  className="premium-card p-7 text-left group hover:scale-[1.01] transform transition-all animate-slide-up"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   <div className="flex items-center justify-between">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900 mb-1">
+                    <div className="flex-1">
+                      <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary-600 transition">
                         {chap.name}
                       </h3>
-                      <p className="text-sm text-gray-600 mb-2">
+                      <p className="text-sm text-gray-600 mb-3 leading-relaxed">
                         {chap.description}
                       </p>
-                      <div className="flex items-center text-xs text-gray-500">
-                        <span>{chap.topics.length} topics</span>
-                        <span className="mx-2">•</span>
-                        <span>~{chap.estimatedHours} hours</span>
+                      <div className="flex items-center gap-4 text-xs font-medium">
+                        <span className="px-3 py-1 bg-primary-100 text-primary-700 rounded-full">
+                          {chap.topics.length} topics
+                        </span>
+                        <span className="px-3 py-1 bg-accent-100 text-accent-700 rounded-full">
+                          ~{chap.estimatedHours} hours
+                        </span>
                       </div>
                     </div>
-                    <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-primary-500 transition" />
+                    <ChevronRight className="w-7 h-7 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all ml-4" />
                   </div>
                 </button>
               ))}
@@ -142,41 +149,42 @@ export default function SubjectSelection({
         )}
 
         {selectedSubject && selectedChapter && chapter && (
-          <div className="space-y-4">
+          <div className="space-y-5">
             <button
               onClick={() => setSelectedChapter(null)}
-              className="text-primary-600 hover:text-primary-700 font-medium"
+              className="glass-effect px-5 py-2 rounded-xl text-primary-600 hover:text-primary-700 font-semibold transition-all hover:shadow-lg"
             >
               ← Change Chapter
             </button>
-            <div className="grid gap-3">
-              {chapter.topics.map((topic) => (
+            <div className="grid gap-4">
+              {chapter.topics.map((topic, idx) => (
                 <button
                   key={topic.id}
                   onClick={() => handleTopicSelect(topic.id)}
-                  className="bg-white p-5 rounded-xl shadow-md hover:shadow-lg transition-all text-left group"
+                  className="premium-card p-6 text-left group hover:scale-[1.01] transform transition-all animate-slide-up"
+                  style={{ animationDelay: `${idx * 0.1}s` }}
                 >
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
-                      <div className="flex items-center gap-2 mb-1">
-                        <h3 className="text-lg font-semibold text-gray-900">
+                      <div className="flex items-center gap-3 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-primary-600 transition">
                           {topic.name}
                         </h3>
-                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold shadow-sm ${
                           topic.difficulty === 'easy' 
-                            ? 'bg-green-100 text-green-700'
+                            ? 'bg-gradient-to-r from-green-400 to-green-500 text-white'
                             : topic.difficulty === 'medium'
-                            ? 'bg-yellow-100 text-yellow-700'
-                            : 'bg-red-100 text-red-700'
+                            ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white'
+                            : 'bg-gradient-to-r from-red-400 to-pink-500 text-white'
                         }`}>
-                          {topic.difficulty}
+                          {topic.difficulty.toUpperCase()}
                         </span>
                       </div>
-                      <p className="text-sm text-gray-600">
+                      <p className="text-sm text-gray-600 leading-relaxed">
                         {topic.description}
                       </p>
                     </div>
-                    <ChevronRight className="w-6 h-6 text-gray-400 group-hover:text-primary-500 transition ml-4" />
+                    <ChevronRight className="w-7 h-7 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-1 transition-all ml-4" />
                   </div>
                 </button>
               ))}

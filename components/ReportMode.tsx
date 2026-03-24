@@ -22,38 +22,48 @@ export default function ReportMode({ result, onExit }: ReportModeProps) {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-50 via-white to-blue-50 p-4 md:p-8">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-8 animate-fade-in">
-          <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-500 rounded-full mb-4">
-            <Trophy className="w-10 h-10 text-white" />
+    <div className="min-h-screen p-4 md:p-8">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-12 animate-fade-in">
+          <div className="inline-flex items-center justify-center w-28 h-28 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl mb-6 shadow-glow animate-float">
+            <Trophy className="w-14 h-14 text-white" />
           </div>
-          <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            Great Work!
+          <h1 className="text-5xl md:text-6xl font-bold mb-4">
+            <span className="gradient-text">Great Work!</span>
           </h1>
-          <p className="text-gray-600">
+          <p className="text-xl text-white/90 font-medium">
             Here's how you did on your homework
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-4 mb-8">
-          <div className={`${getScoreBg(result.totalScore)} rounded-2xl p-6 text-center animate-slide-up`}>
-            <p className="text-sm text-gray-600 mb-1">Overall Score</p>
-            <p className={`text-4xl font-bold ${getScoreColor(result.totalScore)}`}>
+        <div className="grid md:grid-cols-3 gap-6 mb-10">
+          <div className={`glass-effect rounded-3xl p-8 text-center animate-scale-in shadow-premium border border-white/30`}>
+            <p className="text-sm text-gray-700 mb-2 font-semibold uppercase tracking-wide">Overall Score</p>
+            <p className={`text-6xl font-bold ${getScoreColor(result.totalScore)} mb-2`}>
               {Math.round(result.totalScore)}%
             </p>
+            <div className="w-full bg-gray-200 rounded-full h-2 mt-4">
+              <div 
+                className={`h-2 rounded-full transition-all duration-1000 ${
+                  result.totalScore >= 80 ? 'bg-gradient-to-r from-success-400 to-success-600' :
+                  result.totalScore >= 60 ? 'bg-gradient-to-r from-warning-400 to-warning-600' :
+                  'bg-gradient-to-r from-error-400 to-error-600'
+                }`}
+                style={{ width: `${result.totalScore}%` }}
+              />
+            </div>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 text-center animate-slide-up" style={{ animationDelay: '0.1s' }}>
-            <p className="text-sm text-gray-600 mb-1">Correct Answers</p>
-            <p className="text-4xl font-bold text-primary-600">
+          <div className="glass-effect rounded-3xl p-8 text-center animate-scale-in shadow-premium border border-white/30" style={{ animationDelay: '0.1s' }}>
+            <p className="text-sm text-gray-700 mb-2 font-semibold uppercase tracking-wide">Correct Answers</p>
+            <p className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-600">
               {result.correctAnswers}/{result.totalQuestions}
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 text-center animate-slide-up" style={{ animationDelay: '0.2s' }}>
-            <p className="text-sm text-gray-600 mb-1">Accuracy</p>
-            <p className="text-4xl font-bold text-primary-600">
+          <div className="glass-effect rounded-3xl p-8 text-center animate-scale-in shadow-premium border border-white/30" style={{ animationDelay: '0.2s' }}>
+            <p className="text-sm text-gray-700 mb-2 font-semibold uppercase tracking-wide">Accuracy</p>
+            <p className="text-6xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-600 to-accent-600">
               {Math.round((result.correctAnswers / result.totalQuestions) * 100)}%
             </p>
           </div>

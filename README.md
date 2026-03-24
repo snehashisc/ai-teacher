@@ -4,24 +4,45 @@ A personalized, syllabus-aligned, continuous AI teacher that remembers students 
 
 ## Features
 
-### 1. Remembers the Student
+### 1. Remembers the Student 🧠
 - Tracks weak topics and areas of difficulty
 - Identifies strong topics and areas of mastery
 - Adapts teaching pace based on student performance
 - Maintains learning history across sessions
 
-### 2. Teaches Like a Human Tutor
+### 2. Teaches Like a Human Tutor 📚
 - Explains concepts step-by-step with real-world examples
 - Asks questions to check understanding
 - Provides homework assignments with mixed difficulty
 - Evaluates answers and provides detailed feedback
 - Guides students to discover answers rather than giving them directly
 
-### 3. Closed Feedback Loop
+### 3. Closed Feedback Loop 🔁
 - Student answers questions during teaching
 - AI checks and evaluates responses
 - AI adapts difficulty and pace based on performance
 - Tracks progress over time
+
+### 4. Voice & Speech Features 🎤
+- **Text-to-Speech**: Teacher speaks all responses naturally
+- **Speech-to-Text**: Students can speak their answers
+- **Indian English Support**: Optimized for Indian accents
+- **Voice Toggle**: Enable/disable voice anytime
+- **Free**: Uses browser APIs (no cost!)
+
+### 5. Animated Teacher Avatar 🎭
+- **Lip-sync**: Mouth moves when speaking
+- **Emotions**: Happy, thinking, encouraging, explaining
+- **Gestures**: Hand movements during explanations
+- **Multiple Avatars**: Different styles for teaching vs storytelling
+- **Lightweight**: Pure SVG (3KB total)
+
+### 6. Premium UI/UX ✨
+- **Glass Morphism**: Modern blur effects
+- **Animated Gradients**: Living, breathing backgrounds
+- **Glow Effects**: Premium shadows and highlights
+- **Smooth Animations**: Professional transitions
+- **Responsive**: Perfect on all devices
 
 ## Tech Stack
 

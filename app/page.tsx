@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { useSessionStore } from '@/lib/store/session-store';
 import StudentSetup from '@/components/StudentSetup';
 import SubjectSelection from '@/components/SubjectSelection';
-import TeachingMode from '@/components/TeachingMode';
+import VoiceTeachingMode from '@/components/VoiceTeachingMode';
 import HomeworkMode from '@/components/HomeworkMode';
 import ReportMode from '@/components/ReportMode';
 import { HomeworkResult } from '@/lib/ai/homework';
@@ -82,7 +82,7 @@ export default function Home() {
 
   if (mode === 'teaching') {
     return (
-      <TeachingMode
+      <VoiceTeachingMode
         onComplete={handleTeachingComplete}
         onExit={handleExit}
       />

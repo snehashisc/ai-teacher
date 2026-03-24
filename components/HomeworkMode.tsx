@@ -111,32 +111,42 @@ export default function HomeworkMode({ onComplete }: HomeworkModeProps) {
   const allAnswered = homework.questions.every(q => homeworkAnswers[q.id]?.trim());
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-white to-blue-50 p-4 md:p-8">
-      <div className="max-w-3xl mx-auto">
-        <div className="mb-8">
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-purple-500 rounded-full flex items-center justify-center">
-                <ClipboardList className="w-6 h-6 text-white" />
-              </div>
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900">Homework Time!</h1>
-                <p className="text-sm text-gray-600">
-                  Question {currentQuestion + 1} of {homework.questions.length}
-                </p>
+    <div className="min-h-screen p-4 md:p-8">
+      <div className="max-w-4xl mx-auto">
+        <div className="mb-10">
+          <div className="glass-effect rounded-3xl p-8 shadow-premium border border-white/30 mb-6">
+            <div className="flex items-center justify-between mb-6">
+              <div className="flex items-center gap-4">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-glow">
+                  <ClipboardList className="w-8 h-8 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-3xl font-bold gradient-text">Homework Time!</h1>
+                  <p className="text-sm text-gray-600 font-medium">
+                    Question {currentQuestion + 1} of {homework.questions.length}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div className="w-full bg-gray-200 rounded-full h-2">
-            <div
-              className="bg-purple-500 h-2 rounded-full transition-all duration-300"
-              style={{ width: `${progress}%` }}
-            />
+            <div className="relative">
+              <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+                <div
+                  className="bg-gradient-to-r from-purple-500 via-pink-500 to-purple-600 h-3 rounded-full transition-all duration-500 relative"
+                  style={{ width: `${progress}%` }}
+                >
+                  <div className="absolute inset-0 bg-white/30 animate-shimmer" style={{
+                    backgroundImage: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent)',
+                    backgroundSize: '200% 100%'
+                  }}></div>
+                </div>
+              </div>
+              <p className="text-xs text-gray-500 mt-2 text-right font-medium">{Math.round(progress)}% Complete</p>
+            </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl p-8 mb-6 animate-fade-in">
+        <div className="premium-card p-10 mb-8 animate-scale-in">
           <div className="flex items-start gap-2 mb-4">
             <span className={`px-3 py-1 rounded-full text-xs font-medium ${
               question.difficulty === 'easy'

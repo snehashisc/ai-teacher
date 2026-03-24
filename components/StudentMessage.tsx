@@ -9,20 +9,20 @@ interface StudentMessageProps {
 
 export default function StudentMessage({ message }: StudentMessageProps) {
   return (
-    <div className="flex gap-3 justify-end animate-fade-in">
+    <div className="flex gap-4 justify-end animate-fade-in">
       <div className="flex-1 flex justify-end">
         <div>
-          <div className="bg-primary-500 text-white rounded-2xl rounded-tr-none px-4 py-3 max-w-2xl">
-            <p className="leading-relaxed">{message.content}</p>
+          <div className="bg-gradient-to-br from-primary-600 to-accent-600 text-white rounded-3xl rounded-tr-none px-6 py-4 max-w-3xl shadow-lg">
+            <p className="leading-relaxed text-base">{message.content}</p>
           </div>
-          <p className="text-xs text-gray-400 mt-1 mr-2 text-right">
+          <p className="text-xs text-white/70 mt-2 mr-3 text-right font-medium">
             {message.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </p>
         </div>
       </div>
       <div className="flex-shrink-0">
-        <div className="w-10 h-10 bg-gray-300 rounded-full flex items-center justify-center">
-          <User className="w-5 h-5 text-gray-600" />
+        <div className="w-12 h-12 bg-gradient-to-br from-gray-300 to-gray-400 rounded-2xl flex items-center justify-center shadow-md">
+          <User className="w-6 h-6 text-white" />
         </div>
       </div>
     </div>

@@ -35,6 +35,42 @@ function convertMessagesToPrompt(messages: ChatMessage[]): string {
   return prompt;
 }
 
+function cleanResponse(text: string): string {
+  // Remove unwanted artifacts from Gemini responses
+  let cleaned = text.trim();
+  
+  // Remove common unwanted phrases
+  const unwantedPhrases = [
+    /thinking phase/gi,
+    /\[thinking\]/gi,
+    /\[\/thinking\]/gi,
+    /thinking:/gi,
+    /^assistant:\s*/gi,
+    /^user:\s*/gi,
+  ];
+  
+  for (const phrase of unwantedPhrases) {
+    cleaned = cleaned.replace(phrase, '');
+  }
+  
+  // Remove any text after common end markers
+  const endMarkers = [
+    '\n\nUser:',
+    '\n\nAssistant:',
+    '\nUser:',
+    '\nAssistant:',
+  ];
+  
+  for (const marker of endMarkers) {
+    const index = cleaned.indexOf(marker);
+    if (index !== -1) {
+      cleaned = cleaned.substring(0, index);
+    }
+  }
+  
+  return cleaned.trim();
+}
+
 export async function chat(
   messages: ChatMessage[],
   options?: {
@@ -57,7 +93,8 @@ export async function chat(
   const prompt = convertMessagesToPrompt(messages);
   const result = await model.generateContent(prompt);
   const response = result.response;
-  return response.text();
+  const text = response.text();
+  return cleanResponse(text);
 }
 
 export async function chatStream(

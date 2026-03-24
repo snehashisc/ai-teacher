@@ -1,17 +1,21 @@
 'use client';
 
+import TeacherAvatar from './TeacherAvatar';
+
 export default function ThinkingIndicator() {
   return (
-    <div className="flex gap-3 animate-fade-in">
+    <div className="flex gap-4 animate-fade-in">
       <div className="flex-shrink-0">
-        <div className="w-10 h-10 bg-primary-500 rounded-full flex items-center justify-center">
-          <span className="text-white font-semibold text-sm">AI</span>
-        </div>
+        <TeacherAvatar 
+          isSpeaking={false}
+          emotion="thinking"
+          size="small"
+        />
       </div>
       <div className="flex-1">
-        <div className="bg-primary-50 rounded-2xl rounded-tl-none px-4 py-3 max-w-xs">
-          <div className="flex items-center gap-2 text-primary-600">
-            <span className="text-sm font-medium">Teacher is thinking</span>
+        <div className="bg-gradient-to-br from-primary-50 to-purple-50 rounded-3xl rounded-tl-none px-6 py-4 max-w-md border-2 border-primary-200 shadow-lg">
+          <div className="flex items-center gap-3 text-primary-600">
+            <span className="text-base font-semibold">Teacher is thinking</span>
             <div className="thinking-dots">
               <span></span>
               <span></span>
