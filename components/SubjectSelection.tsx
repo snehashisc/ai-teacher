@@ -177,7 +177,7 @@ export default function SubjectSelection({
                             ? 'bg-gradient-to-r from-yellow-400 to-orange-500 text-white'
                             : 'bg-gradient-to-r from-red-400 to-pink-500 text-white'
                         }`}>
-                          {topic.difficulty.toUpperCase()}
+                          {(topic.difficulty || 'medium').toUpperCase()}
                         </span>
                       </div>
                       <p className="text-sm text-gray-600 leading-relaxed">

@@ -1,17 +1,31 @@
+// Curriculum and student context types
+
+export interface StudentContext {
+  studentId: string;
+  name?: string;
+  class?: number;
+  weakTopics?: string[];
+  strongTopics?: string[];
+  learningStyle?: string;
+  learningPace?: 'slow' | 'medium' | 'fast';
+  previousScore?: number;
+  currentAccuracy?: number;
+}
+
 export interface Topic {
   id: string;
   name: string;
-  description: string;
-  difficulty: 'easy' | 'medium' | 'hard';
+  description?: string;
+  difficulty?: 'easy' | 'medium' | 'hard';
   prerequisites?: string[];
 }
 
 export interface Chapter {
   id: string;
   name: string;
-  description: string;
+  description?: string;
+  estimatedHours?: number;
   topics: Topic[];
-  estimatedHours: number;
 }
 
 export interface Subject {
@@ -21,16 +35,8 @@ export interface Subject {
 }
 
 export interface Curriculum {
-  class: number;
-  board: 'CBSE' | 'ICSE' | 'STATE';
+  class?: number;
+  classNum: number;
+  board?: string;
   subjects: Subject[];
-}
-
-export interface StudentContext {
-  studentId: string;
-  class: number;
-  weakTopics: string[];
-  strongTopics: string[];
-  currentAccuracy: number;
-  learningPace: 'slow' | 'medium' | 'fast';
 }

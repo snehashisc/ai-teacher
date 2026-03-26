@@ -1,4 +1,6 @@
 import { chat } from './client';
+import { getSecureAIClient } from './secure-client';
+import { LLMMessage } from '../llm/provider';
 import { getHomeworkGeneratorPrompt } from './prompts';
 import { StudentContext } from '../curriculum/types';
 
@@ -42,12 +44,14 @@ export async function generateHomework(
     studentContext
   );
 
-  const response = await chat([
+  const secureClient = getSecureAIClient();
+  const response = await secureClient.chat([
     { role: 'system', content: 'You are an expert homework creator. Always respond with valid JSON.' },
     { role: 'user', content: prompt },
-  ], {
+  ] as LLMMessage[], {
     temperature: 0.8,
     maxTokens: 1500,
+    studentId: studentContext?.studentId,
   });
 
   try {

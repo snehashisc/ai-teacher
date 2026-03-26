@@ -20,6 +20,7 @@ export default function VoiceTeachingMode({ onComplete, onExit }: VoiceTeachingM
   const [isSpeaking, setIsSpeaking] = useState(false);
   const [voiceEnabled, setVoiceEnabled] = useState(true);
   const [interimTranscript, setInterimTranscript] = useState('');
+  const [lessonStarted, setLessonStarted] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const speechService = useRef(getSpeechService());
 
@@ -37,8 +38,12 @@ export default function VoiceTeachingMode({ onComplete, onExit }: VoiceTeachingM
   } = useSessionStore();
 
   useEffect(() => {
-    startLesson();
-  }, []);
+    // Prevent duplicate lesson starts (React Strict Mode runs effects twice)
+    if (!lessonStarted) {
+      setLessonStarted(true);
+      startLesson();
+    }
+  }, [lessonStarted]);
 
   useEffect(() => {
     scrollToBottom();

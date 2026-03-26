@@ -3,26 +3,31 @@ import { class6Math } from './data/class6-math';
 
 export const curriculumData: Record<string, Curriculum> = {
   'cbse-6': {
+    classNum: 6,
     class: 6,
     board: 'CBSE',
     subjects: [class6Math],
   },
   'cbse-7': {
+    classNum: 7,
     class: 7,
     board: 'CBSE',
     subjects: [class6Math], // Using same curriculum for now
   },
   'cbse-8': {
+    classNum: 8,
     class: 8,
     board: 'CBSE',
     subjects: [class6Math], // Using same curriculum for now
   },
   'cbse-9': {
+    classNum: 9,
     class: 9,
     board: 'CBSE',
     subjects: [class6Math], // Using same curriculum for now
   },
   'cbse-10': {
+    classNum: 10,
     class: 10,
     board: 'CBSE',
     subjects: [class6Math], // Using same curriculum for now
